@@ -44,3 +44,5 @@ rootkey.csv
 Throughput-Marketplace-Key.pem
 
 .Rproj.user
+
+neo4jdb/
