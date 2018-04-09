@@ -2,21 +2,22 @@ package com.mapmydata.throughputdb;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class WebController {
-    @RequestMapping("/")
-    public String index() {
-        return "home";
+    @PostMapping("/")
+    public String readPerson(@ModelAttribute Person person, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "home";
+        }
+        return "greeting";
     }
 
-    @GetMapping("/greeting")
-    public String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
-        model.addAttribute("name", name);
-        return "greeting";
+    @GetMapping("/")
+    public String greeting(Model model) {
+        model.addAttribute("person", new Person());
+        return "home";
     }
 }

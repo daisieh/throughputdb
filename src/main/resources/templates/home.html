@@ -5,7 +5,9 @@
 </head>
 <body>
 <h1>Welcome!</h1>
-
-<p>Click <a th:href="@{/greeting}">here</a> to see a greeting.</p>
+<form action="#" th:action="@{/}" th:object="${person}" method="post">
+<div><label> User Name : <input type="text" th:field="*{firstName}"/> </label></div>
+    <button type="submit">Click here</button>
+</form>
 </body>
 </html>
