@@ -1,7 +1,8 @@
-package com.mapmydata.throughputdb;
+package com.mapmydata.throughputdb.person;
 
 import java.util.List;
 
+import com.mapmydata.throughputdb.person.Person;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;

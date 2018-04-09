@@ -1,6 +1,7 @@
-package com.mapmydata.throughputdb;
+package com.mapmydata.throughputdb.annotation;
 
 
+import com.mapmydata.throughputdb.person.Person;
 import org.neo4j.ogm.annotation.NodeEntity;
 
 @NodeEntity

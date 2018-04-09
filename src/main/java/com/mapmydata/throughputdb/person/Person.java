@@ -1,4 +1,4 @@
-package com.mapmydata.throughputdb;
+package com.mapmydata.throughputdb.person;
 
 
 import org.neo4j.ogm.annotation.NodeEntity;
