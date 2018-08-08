@@ -4,8 +4,6 @@ import com.mapmydata.throughputdb.account.Account;
 import com.mapmydata.throughputdb.account.AccountRepository;
 import com.mapmydata.throughputdb.annotation.Annotation;
 import com.mapmydata.throughputdb.annotation.AnnotationRepository;
-import com.mapmydata.throughputdb.person.Person;
-import com.mapmydata.throughputdb.person.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,20 +17,18 @@ import java.util.NoSuchElementException;
 @RequestMapping("/{userId}/annotations")
 public class RESTController {
     private final AnnotationRepository annotationRepository;
-    private final PersonRepository personRepository;
     private final AccountRepository accountRepository;
 
     @Autowired
-    RESTController(AnnotationRepository annotationRepository, PersonRepository personRepository, AccountRepository accountRepository) {
+    RESTController(AnnotationRepository annotationRepository, AccountRepository accountRepository) {
         this.accountRepository = accountRepository;
-        this.personRepository = personRepository;
         this.annotationRepository = annotationRepository;
     }
 
     @RequestMapping(method = RequestMethod.GET)
     Collection<Annotation> readAnnotations(@PathVariable String userId) {
         Account account = this.validateUser(userId);
-        return this.annotationRepository.findAnnotationsByCreator(account.getOrcid());
+        return this.annotationRepository.findAnnotationsByCreator(account);
     }
 
     @RequestMapping(method = RequestMethod.POST)
@@ -40,8 +36,7 @@ public class RESTController {
         Account account = this.validateUser(userId);
         if (account != null) {
             try {
-                Person person = personRepository.findByOrcid(account.getOrcid()).get();
-                Annotation result = new Annotation(input.getTarget(), input.getBody(), person);
+                Annotation result = new Annotation(input.getTarget(), input.getBody(), account);
                 annotationRepository.save(result);
                 URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(result.getId()).toUri();
                 return ResponseEntity.created(location).build();

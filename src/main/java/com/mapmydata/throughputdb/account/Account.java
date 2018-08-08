@@ -3,10 +3,12 @@ package com.mapmydata.throughputdb.account;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mapmydata.throughputdb.annotation.Annotation;
+import com.mapmydata.throughputdb.person.Person;
 import org.neo4j.ogm.annotation.GeneratedValue;
 import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
 
+import java.net.URI;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,15 +24,16 @@ public class Account {
     @JsonIgnore
     private String password;
 
-    private String orcid;
+    private Person person;
 
     private Set<Annotation> annotations = new HashSet<>();
 
     public Account() {}
 
-    public Account(final String username, final String password) {
+    public Account(final String username, final String password, final String orcid) {
         this.username = username;
         this.password = password;
+        this.person = new Person(URI.create(orcid), username);
     }
 
     public Long getId() {
@@ -49,11 +52,7 @@ public class Account {
         return annotations;
     }
 
-    public String getOrcid() {
-        return orcid;
-    }
-
-    public void setOrcid(String orcid) {
-        this.orcid = orcid;
+    public URI getOrcid() {
+        return person.getOrcid();
     }
 }

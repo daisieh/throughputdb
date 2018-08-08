@@ -2,29 +2,32 @@ package com.mapmydata.throughputdb.annotation;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mapmydata.throughputdb.account.Account;
 import com.mapmydata.throughputdb.person.Person;
 import org.neo4j.ogm.annotation.GeneratedValue;
 import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
 
+import java.net.URI;
+
 @NodeEntity
 public class Annotation {
     @Id
     @GeneratedValue
-    private Long id;
+    protected Long id;
 
     @JsonIgnore
 
     @Relationship(type="CREATED_BY")
-    private Person creator;
+    protected Account creator;
 
-    private String target;
-    private String body;
+    protected URI target;
+    protected String body;
 
     public Annotation() {}
 
-    public Annotation(String target, String body, Person creator) {
+    public Annotation(URI target, String body, Account creator) {
         this.target = target;
         this.body = body;
         this.creator = creator;
@@ -34,11 +37,11 @@ public class Annotation {
         return id;
     }
 
-    public String getTarget() {
+    public URI getTarget() {
         return target;
     }
 
-    public void setTarget(String target) {
+    public void setTarget(URI target) {
         this.target = target;
     }
 
@@ -50,11 +53,11 @@ public class Annotation {
         this.body = body;
     }
 
-    public Person getCreator() {
+    public Account getCreator() {
         return creator;
     }
 
-    public void setCreator(Person person) {
+    public void setCreator(Account person) {
         this.creator = person;
     }
 }

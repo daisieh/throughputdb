@@ -1,47 +1,35 @@
 package com.mapmydata.throughputdb.person;
 
 
-import org.neo4j.ogm.annotation.GeneratedValue;
-import org.neo4j.ogm.annotation.Id;
+import com.mapmydata.throughputdb.annotation.Annotation;
 import org.neo4j.ogm.annotation.NodeEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
+import java.net.URI;
+
+// A Person is a special class of Annotation that uses ORCIDs for the targets.
 
 @NodeEntity
-public class Person {
-
-    @Id @GeneratedValue
-    private Long id;
-
-    private String firstName;
-    private String lastName;
-    private String orcid;
-
-    private Person() {};
-
-    public Person(String firstName) {
-        this.firstName = firstName;
+public class Person extends Annotation {
+    public Person() {};
+    public Person(URI orcid, String body) {
+        if (isValidOrcid(orcid)) {
+            this.target = orcid;
+            this.body = body;
+        } else {
+            throw new UsernameNotFoundException("invalid ORCID format");
+        }
     }
 
-    public String getFirstName() {
-        return firstName;
+    public URI getOrcid() {
+        return target;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setOrcid(URI orcid) {
+        this.target = orcid;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getOrcid() {
-        return orcid;
-    }
-
-    public void setOrcid(String orcid) {
-        this.orcid = orcid;
+    public static Boolean isValidOrcid(URI orcid) {
+        return true;
     }
 }
