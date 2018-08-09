@@ -1,0 +1,20 @@
+spring:
+  data:
+    neo4j:
+      username: daisieh
+      password: sidwell
+
+security:
+  oauth2:
+    client:
+      clientId: APP-GCTUZEEK106LCVB7
+      clientSecret: abef64f5-97e3-4cdd-961d-dc6be54db0e9
+      accessTokenUri: https://orcid.org/oauth/token
+      userAuthorizationUri: https://orcid.org/oauth/authorize
+      tokenName: oauth_token
+      authenticationScheme: query
+      clientAuthenticationScheme: form
+      scope: /authenticate
+      pre-established-redirect-uri: http://localhost:8080
+    resource:
+      userInfoUri: http://localhost:8080/me
