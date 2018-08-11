@@ -14,7 +14,6 @@ import java.util.Collection;
 import java.util.NoSuchElementException;
 
 @RestController
-@RequestMapping("/{userId}/annotations")
 public class RESTController {
     private final AnnotationRepository annotationRepository;
     private final AccountRepository accountRepository;
@@ -25,14 +24,16 @@ public class RESTController {
         this.annotationRepository = annotationRepository;
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "/{userId}/annotations", method = RequestMethod.GET)
     Collection<Annotation> readAnnotations(@PathVariable String userId) {
+        System.out.println("hello");
         Account account = this.validateUser(userId);
         return this.annotationRepository.findAnnotationsByCreator(account);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value = "/{userId}/annotations", method = RequestMethod.POST)
     ResponseEntity<?> add(@PathVariable String userId, @RequestBody Annotation input) {
+        System.out.println("hello");
         Account account = this.validateUser(userId);
         if (account != null) {
             try {

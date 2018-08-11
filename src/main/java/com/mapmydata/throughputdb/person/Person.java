@@ -3,7 +3,6 @@ package com.mapmydata.throughputdb.person;
 
 import com.mapmydata.throughputdb.annotation.Annotation;
 import org.neo4j.ogm.annotation.NodeEntity;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.net.URI;
 
@@ -17,7 +16,6 @@ public class Person extends Annotation {
             this.target = orcid;
             this.body = body;
         } else {
-            throw new UsernameNotFoundException("invalid ORCID format");
         }
     }
 

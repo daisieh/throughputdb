@@ -9,13 +9,25 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 @SpringBootApplication
-public class ThroughputdbApplication {
+public class ThroughputdbApplication extends WebSecurityConfigurerAdapter {
 	Logger logger = LoggerFactory.getLogger("com.mapmydata.throughputdb.ThroughputdbApplication");
 
 	public static void main(String[] args) {
 		SpringApplication.run(ThroughputdbApplication.class, args);
+	}
+
+	@Bean("authenticationManager")
+	@Override
+	public AuthenticationManager authenticationManagerBean() throws Exception {
+		return super.authenticationManagerBean();
 	}
 
 	@Bean
@@ -27,6 +39,12 @@ public class ThroughputdbApplication {
 			Account account = new Account("daisieh", "sidwell", "https://orcid.org/0000-0002-1497-1284");
 
 			accountRepository.save(account);
+
+			UsernamePasswordAuthenticationToken authReq
+					= new UsernamePasswordAuthenticationToken("daisieh", "sidwell");
+			Authentication auth = authenticationManager().authenticate(authReq);
+			SecurityContext sc = SecurityContextHolder.getContext();
+			sc.setAuthentication(auth);
 		};
 	}
 }
