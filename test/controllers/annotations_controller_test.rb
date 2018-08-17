@@ -2,47 +2,47 @@ require 'test_helper'
 
 class AnnotationsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @annotation = annotations(:one)
+    @widget = annotations(:one)
   end
 
   test "should get index" do
-    get annotations_url
+    get widgets_url
     assert_response :success
   end
 
   test "should get new" do
-    get new_annotation_url
+    get new_widget_url
     assert_response :success
   end
 
   test "should create annotation" do
     assert_difference('Annotation.count') do
-      post annotations_url, params: { annotation: { body: @annotation.body, creator: @annotation.creator, target: @annotation.target } }
+      post widgets_url, params: {widget: {body: @widget.body, creator: @widget.creator, target: @widget.target } }
     end
 
-    assert_redirected_to annotation_url(Annotation.last)
+    assert_redirected_to widget_url(Widget.last)
   end
 
   test "should show annotation" do
-    get annotation_url(@annotation)
+    get widget_url(@widget)
     assert_response :success
   end
 
   test "should get edit" do
-    get edit_annotation_url(@annotation)
+    get edit_widget_url(@widget)
     assert_response :success
   end
 
   test "should update annotation" do
-    patch annotation_url(@annotation), params: { annotation: { body: @annotation.body, creator: @annotation.creator, target: @annotation.target } }
-    assert_redirected_to annotation_url(@annotation)
+    patch widget_url(@widget), params: {widget: {body: @widget.body, creator: @widget.creator, target: @widget.target } }
+    assert_redirected_to widget_url(@widget)
   end
 
   test "should destroy annotation" do
     assert_difference('Annotation.count', -1) do
-      delete annotation_url(@annotation)
+      delete widget_url(@widget)
     end
 
-    assert_redirected_to annotations_url
+    assert_redirected_to widgets_url
   end
 end

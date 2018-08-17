@@ -13,13 +13,13 @@
   </thead>
 
   <tbody>
-    <% @annotations.each do |annotation| %>
+    <% @widgets.each do |annotation| %>
       <tr>
         <td><%= annotation.creator %></td>
         <td><%= annotation.target %></td>
         <td><%= annotation.body %></td>
         <td><%= link_to 'Show', annotation %></td>
-        <td><%= link_to 'Edit', edit_annotation_path(annotation) %></td>
+        <td><%= link_to 'Edit', edit_widget_path(annotation) %></td>
         <td><%= link_to 'Destroy', annotation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
@@ -28,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Annotation', new_annotation_path %>
+<%= link_to 'New Annotation', new_widget_path %>

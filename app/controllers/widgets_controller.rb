@@ -1,10 +1,10 @@
-class AnnotationsController < ApplicationController
+class WidgetsController < ApplicationController
   before_action :set_annotation, only: [:show, :edit, :update, :destroy]
 
   # GET /annotations
   # GET /annotations.json
   def index
-    @annotations = Annotation.all
+    @widgets = Widget.all
   end
 
   # GET /annotations/1
@@ -14,7 +14,7 @@ class AnnotationsController < ApplicationController
 
   # GET /annotations/new
   def new
-    @annotation = Annotation.new
+    @widget = Widget.new
   end
 
   # GET /annotations/1/edit
@@ -24,15 +24,15 @@ class AnnotationsController < ApplicationController
   # POST /annotations
   # POST /annotations.json
   def create
-    @annotation = Annotation.new(annotation_params)
+    @widget = Widget.new(annotation_params)
 
     respond_to do |format|
-      if @annotation.save
-        format.html { redirect_to @annotation, notice: 'Annotation was successfully created.' }
-        format.json { render :show, status: :created, location: @annotation }
+      if @widget.save
+        format.html { redirect_to @widget, notice: 'Annotation was successfully created.' }
+        format.json { render :show, status: :created, location: @widget }
       else
         format.html { render :new }
-        format.json { render json: @annotation.errors, status: :unprocessable_entity }
+        format.json { render json: @widget.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -41,12 +41,12 @@ class AnnotationsController < ApplicationController
   # PATCH/PUT /annotations/1.json
   def update
     respond_to do |format|
-      if @annotation.update(annotation_params)
-        format.html { redirect_to @annotation, notice: 'Annotation was successfully updated.' }
-        format.json { render :show, status: :ok, location: @annotation }
+      if @widget.update(annotation_params)
+        format.html { redirect_to @widget, notice: 'Annotation was successfully updated.' }
+        format.json { render :show, status: :ok, location: @widget }
       else
         format.html { render :edit }
-        format.json { render json: @annotation.errors, status: :unprocessable_entity }
+        format.json { render json: @widget.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -54,9 +54,9 @@ class AnnotationsController < ApplicationController
   # DELETE /annotations/1
   # DELETE /annotations/1.json
   def destroy
-    @annotation.destroy
+    @widget.destroy
     respond_to do |format|
-      format.html { redirect_to annotations_url, notice: 'Annotation was successfully destroyed.' }
+      format.html { redirect_to widgets_url, notice: 'Annotation was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -64,11 +64,11 @@ class AnnotationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_annotation
-      @annotation = Annotation.find(params[:id])
+      @widget = Widget.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def annotation_params
-      params.require(:annotation).permit(:creator, :target, :body)
+      params.require(:widget).permit(:creator, :target, :body)
     end
 end

@@ -1,9 +1,9 @@
 class CreateAnnotation < Neo4j::Migrations::Base
   def up
-    add_constraint :Annotation, :uuid
+    add_constraint :Widget, :uuid
   end
 
   def down
-    drop_constraint :Annotation, :uuid
+    drop_constraint :Widget, :uuid
   end
 end

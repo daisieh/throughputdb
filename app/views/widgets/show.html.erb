@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Creator:</strong>
+  <%= @widget.creator %>
+</p>
+
+<p>
+  <strong>Target:</strong>
+  <%= @widget.target %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @widget.body %>
+</p>
+
+<%= link_to 'Edit', edit_widget_path(@widget) %> |
+<%= link_to 'Back', widgets_path %>

@@ -2,21 +2,21 @@ require "application_system_test_case"
 
 class AnnotationsTest < ApplicationSystemTestCase
   setup do
-    @annotation = annotations(:one)
+    @widget = annotations(:one)
   end
 
   test "visiting the index" do
-    visit annotations_url
+    visit widgets_url
     assert_selector "h1", text: "Annotations"
   end
 
   test "creating a Annotation" do
-    visit annotations_url
+    visit widgets_url
     click_on "New Annotation"
 
-    fill_in "Body", with: @annotation.body
-    fill_in "Creator", with: @annotation.creator
-    fill_in "Target", with: @annotation.target
+    fill_in "Body", with: @widget.body
+    fill_in "Creator", with: @widget.creator
+    fill_in "Target", with: @widget.target
     click_on "Create Annotation"
 
     assert_text "Annotation was successfully created"
@@ -24,12 +24,12 @@ class AnnotationsTest < ApplicationSystemTestCase
   end
 
   test "updating a Annotation" do
-    visit annotations_url
+    visit widgets_url
     click_on "Edit", match: :first
 
-    fill_in "Body", with: @annotation.body
-    fill_in "Creator", with: @annotation.creator
-    fill_in "Target", with: @annotation.target
+    fill_in "Body", with: @widget.body
+    fill_in "Creator", with: @widget.creator
+    fill_in "Target", with: @widget.target
     click_on "Update Annotation"
 
     assert_text "Annotation was successfully updated"
@@ -37,7 +37,7 @@ class AnnotationsTest < ApplicationSystemTestCase
   end
 
   test "destroying a Annotation" do
-    visit annotations_url
+    visit widgets_url
     page.accept_confirm do
       click_on "Destroy", match: :first
     end
