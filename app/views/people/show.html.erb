@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Creator:</strong>
+  <%= @person.creator %>
+</p>
+
+<p>
+  <strong>Target:</strong>
+  <%= @person.target %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @person.body %>
+</p>
+
+<%= link_to 'Edit', edit_person_path(@person) %> |
+<%= link_to 'Back', people_path %>
