@@ -25,7 +25,12 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-
+    logger.error(Person.find_by(orcid: @user[:orcid]))
+    if Person.find_by(orcid: user_params[:orcid]).nil?
+      Person.create(orcid: @user[:orcid])
+    end
+    @this_person = Person.find_by(orcid: @user[:orcid])
+    @user.owner = @this_person
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
