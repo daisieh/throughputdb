@@ -69,6 +69,6 @@ class WidgetsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def annotation_params
-      params.require(:widget).permit(:creator, :target, :body)
+      params.require(:widget).permit(:description, :predicate, :timestamp)
     end
 end

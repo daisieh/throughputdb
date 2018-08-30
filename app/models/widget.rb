@@ -8,3 +8,5 @@ class Widget
   has_many :in, :target, type: :IS_ANNOTATING, model_class: :Widget
   has_many :out, :body, type: :ANNOTATES, model_class: :Widget
 end
+
+# need to define the terminal subclass
